@@ -44,6 +44,8 @@ int32_t launch_process(rust::cxxbridge1::String exePath) {
 
   ResumeThread(pi.hThread);
 
+  Sleep(5000);
+
   CloseHandle(pi.hThread);
   CloseHandle(pi.hProcess);
 
@@ -92,15 +94,27 @@ int32_t enumerate_processes() {
 }
 
 int32_t inject_dll(int32_t pid, rust::cxxbridge1::String dllPath) {
-    std::string s = cpp_string_from_cxx(dllPath);
+  std::cout << "Injecting: " << dllPath << std::endl;
+
+
+  HMODULE dll = LoadLibraryA(dllPath.c_str());
+  FARPROC threadAddr = GetProcAddress(dll, "ThreadProc");
+
+  LPTHREAD_START_ROUTINE pThreadProc = (LPTHREAD_START_ROUTINE)threadAddr; 
+  
+
+  std::cout << "ThreadProc address: " << threadAddr << std::endl;
+
+  std::string s = cpp_string_from_cxx(dllPath);
   HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
+
   if(!hProcess) {
     std::cout << "Error opening process" << std::endl;
     return 1;
   }
 
   size_t dllPathLen = strlen(dllPath.c_str()) + 1;
-  LPVOID addr = VirtualAllocEx(hProcess, NULL, dllPathLen, MEM_COMMIT, PAGE_READWRITE);
+  LPVOID addr = VirtualAllocEx(hProcess, NULL, dllPathLen, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
   if(!addr) {
     std::cout << "Error allocating memory" << std::endl;
     CloseHandle(hProcess);
@@ -113,7 +127,7 @@ int32_t inject_dll(int32_t pid, rust::cxxbridge1::String dllPath) {
     return 1;
   }
 
-  HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, ThreadProc, addr, 0, NULL);
+  HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, pThreadProc, addr, 0, NULL);
   if(!hThread) {
     std::cout << "Error creating remote thread, error: " << GetLastError() << std::endl;
     CloseHandle(hProcess);
@@ -121,6 +135,12 @@ int32_t inject_dll(int32_t pid, rust::cxxbridge1::String dllPath) {
   }
 
   WaitForSingleObject(hThread, INFINITE);
+
+  DWORD result = GetLastError();
+  if (result == WAIT_FAILED) {
+    std::cout << "Wait failed: " << result << std::endl;
+  }
+  
   CloseHandle(hThread);
   CloseHandle(hProcess);
 
