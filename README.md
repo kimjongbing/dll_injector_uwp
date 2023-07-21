@@ -1,5 +1,5 @@
 # dll_injector_uwp
-This was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the windows API but it was not working on Microsoft Store applications (UWP) so I made this.
+This was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the Windows API but it was not working on Microsoft Store applications (UWP) so I made this.
 
 
 ## Usage
