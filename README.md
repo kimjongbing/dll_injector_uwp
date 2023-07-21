@@ -3,6 +3,7 @@ this was originally a normal dll injector using the windows api but it was not w
 
 
 !!this does not work right now!!
+the file paths are also still hardcoded because im still debugging
 
 usage(make nice later):
 
