@@ -56,7 +56,7 @@ DWORD result = load_dll(dllPathStr.c_str());
 
   HMODULE hDLL = LoadLibraryA(dllPath.c_str());
   if(!hDLL) {
-    std::cout << "Error loading DLL" << std::endl;
+    std::cout << "Error loading DLL" << GetLastError() << std::endl;
     return 1;
   }
   
@@ -79,7 +79,6 @@ int32_t enumerate_processes() {
   }
 
   while(true) {
-    // print32_t or handle process details
     std::cout << pe.szExeFile << std::endl;
     
     if(!Process32Next(hSnapshot, &pe)) {
@@ -100,7 +99,8 @@ int32_t inject_dll(int32_t pid, rust::cxxbridge1::String dllPath) {
     return 1;
   }
 
-  LPVOID addr = VirtualAllocEx(hProcess, NULL, 512, MEM_COMMIT, PAGE_READWRITE);
+  size_t dllPathLen = strlen(dllPath.c_str()) + 1;
+  LPVOID addr = VirtualAllocEx(hProcess, NULL, dllPathLen, MEM_COMMIT, PAGE_READWRITE);
   if(!addr) {
     std::cout << "Error allocating memory" << std::endl;
     CloseHandle(hProcess);
@@ -115,11 +115,12 @@ int32_t inject_dll(int32_t pid, rust::cxxbridge1::String dllPath) {
 
   HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, ThreadProc, addr, 0, NULL);
   if(!hThread) {
-    std::cout << "Error creating remote thread" << std::endl;
+    std::cout << "Error creating remote thread, error: " << GetLastError() << std::endl;
     CloseHandle(hProcess);
-    return 1;
+    return 1;  
   }
 
+  WaitForSingleObject(hThread, INFINITE);
   CloseHandle(hThread);
   CloseHandle(hProcess);
 
