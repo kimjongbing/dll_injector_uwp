@@ -1,11 +1,18 @@
 # dll_injector_uwp
-this was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the windows api but it was not working on Microsoft Store applications (UWP) so i made this
+This was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the windows API but it was not working on Microsoft Store applications (UWP) so I made this.
 
 
 ## Usage
 1. dll_injector.exe <list> : will list all pids
 2. dll_injector.exe <pid> <file.exe> : will return pid of running exe
 3. dll_injector.exe <pid> <payload.dll> : will inject into process
+
+
+## File-setup
+**This is temporary until I just make the C++ a library to import functions**
+1. Go to ``lib.rs`` and change ``include!("F:/resources/codingstuff/dll_injector_uwp/cpp/bridge.h");`` to the file path of where bridge.h is on your computer
+2. Do the same in ``build.rs``, change the file paths to match your system. 
+
 
 
 ## DLL Setup Permissions
