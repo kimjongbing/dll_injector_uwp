@@ -71,7 +71,7 @@ This is a command-line application, so all inputs (arguments) should be passed i
 
 
 ## DLL Setup Permissions
-**For now you have to do this manually until I set this to be done automatically for you**
+**For now you have to do this manually until I set this to be done automatically**
 1.  Right-click the ``.dll`` file you want to inject.
 2.  Click the ``Security`` tab.
 3.  Click ``Edit`` next to ``To change permissions, click Edit:``
