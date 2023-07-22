@@ -1,11 +1,11 @@
 # dll_injector_uwp
-This was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the windows API but it was not working on Microsoft Store applications (UWP) so I made this.
+This was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the Windows API but it was not working on Microsoft Store applications (UWP) so I made this injector. This works on both UWP applications and normal applications. 
 
 
 ## Usage
-1. dll_injector.exe <list> : will list all pids
-2. dll_injector.exe <pid> <file.exe> : will return pid of running exe
-3. dll_injector.exe <pid> <payload.dll> : will inject into process
+1. **dll_injector.exe** ``<list>`` : will list all pids
+2. **dll_injector.exe** ``<pid>`` ``<file.exe>`` : will return pid of running exe
+3. **dll_injector.exe** ``inject`` ``<pid>`` ``<payload.dll>`` : will inject into process
 
 
 ## File-setup
