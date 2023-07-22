@@ -1,14 +1,23 @@
 use std::ffi::CStr;
 
 use dll_injector::dll_injector;
-use winapi::{um::{tlhelp32::{CreateToolhelp32Snapshot, TH32CS_SNAPPROCESS, PROCESSENTRY32, Process32First, Process32Next}, handleapi::CloseHandle}, shared::minwindef::{DWORD, FALSE}};
+use winapi::{
+    shared::minwindef::{DWORD, FALSE},
+    um::{
+        handleapi::CloseHandle,
+        tlhelp32::{
+            CreateToolhelp32Snapshot, Process32First, Process32Next, PROCESSENTRY32,
+            TH32CS_SNAPPROCESS,
+        },
+    },
+};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     if args.len() < 2 {
         println!("Usage:");
-        println!("  list - list running processes"); 
+        println!("  list - list running processes");
         println!("  pid <exe> - get PID of process");
         println!("  inject <pid> <dll> - inject DLL into process");
         return;
@@ -38,7 +47,7 @@ fn main() {
             let dll = &args[3];
             dll_injector::inject_dll(pid, dll.to_string());
         }
-        _ => println!("Invalid command")
+        _ => println!("Invalid command"),
     }
 }
 
