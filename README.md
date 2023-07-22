@@ -2,6 +2,10 @@
 This was originally a normal [dll injector](https://github.com/kimjongbing/dll_injector) using the Windows API but it was not working on Microsoft Store applications (UWP) so I made this injector. This works on both UWP applications and normal applications. 
 
 
+## Caution
+Please make sure your DLL is on a hard drive with an NTFS file system. You will not be able to see the ``Security`` tab otherwise. Look at the [DLL Setup Permissions](#dll-setup-permissions) section to see how to set up the security permissions of your DLL. 
+
+
 ## Usage
 1. **List all processes**: Run the following command to list all process IDs (PIDs).
 
@@ -64,10 +68,6 @@ This was originally a normal [dll injector](https://github.com/kimjongbing/dll_i
 5. **Run the executable**: Start the application by running `dll_injector.exe`. Upon execution, the console will display usage instructions. You can then provide the necessary arguments based on what you want to do.
 
 Remember, this is a command-line application, so all inputs (arguments) should be passed in the command line. You should also note that this tool needs to be run from a terminal with administrator privileges for it to function properly.
-
-
-## Caution
-Please make sure your DLL is on a hard drive with an NTFS file system. You will not be able to see the ``Security`` tab otherwise. Look at the [DLL Setup Permissions](#dll-setup-permissions) section to see how to set up the security permissions of your DLL. 
 
 
 ## DLL Setup Permissions
