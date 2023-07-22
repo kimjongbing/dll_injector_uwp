@@ -80,3 +80,4 @@ This is a command-line application, so all inputs (arguments) should be passed i
 5.  Click OK
 6.  Make sure it has ``Read & execute`` and ``Read`` enabled 
 
+You can read more [here](https://www.unknowncheats.me/forum/general-programming-and-reversing/177183-basic-intermediate-techniques-uwp-app-modding.html)
