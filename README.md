@@ -67,7 +67,7 @@ Please make sure your DLL is on a hard drive with an NTFS file system. You will 
 
 5. **Run the executable**: Start the application by running `dll_injector.exe`. Upon execution, the console will display usage instructions. You can then provide the necessary arguments based on what you want to do.
 
-Remember, this is a command-line application, so all inputs (arguments) should be passed in the command line. You should also note that this tool needs to be run from a terminal with administrator privileges for it to function properly.
+Remember, this is a command-line application, so all inputs (arguments) should be passed in the command line. Please also run as administrator if you have any issues.
 
 
 ## DLL Setup Permissions
