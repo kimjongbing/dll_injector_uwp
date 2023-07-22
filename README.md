@@ -5,6 +5,8 @@ This was originally a normal [dll injector](https://github.com/kimjongbing/dll_i
 ## Caution
 Please make sure your DLL is on a hard drive with an NTFS file system. You will not be able to see the ``Security`` tab otherwise. Look at the [DLL Setup Permissions](#dll-setup-permissions) section to see how to set up the security permissions of your DLL. 
 
+## Release
+You can get the pre-compiled ``Release`` [here](https://github.com/kimjongbing/dll_injector_uwp/releases)
 
 ## Usage
 1. **List all processes**: Run the following command to list all process IDs (PIDs).
@@ -37,7 +39,6 @@ Please make sure your DLL is on a hard drive with an NTFS file system. You will 
     ```bash
     dll_injector.exe inject 1234 C:/path/to/your/payload.dll
     ```
-
 
 ## Compile Guide
 
