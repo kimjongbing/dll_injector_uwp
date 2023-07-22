@@ -3,9 +3,9 @@ This was originally a normal [dll injector](https://github.com/kimjongbing/dll_i
 
 
 ## Usage
-1. dll_injector.exe <list> : will list all pids
-2. dll_injector.exe <pid> <file.exe> : will return pid of running exe
-3. dll_injector.exe <pid> <payload.dll> : will inject into process
+1. **dll_injector.exe** ``<list>`` : will list all pids
+2. **dll_injector.exe** ``<pid>`` ``<file.exe>`` : will return pid of running exe
+3. **dll_injector.exe** ``<pid>`` ``<payload.dll>`` : will inject into process
 
 
 ## File-setup
